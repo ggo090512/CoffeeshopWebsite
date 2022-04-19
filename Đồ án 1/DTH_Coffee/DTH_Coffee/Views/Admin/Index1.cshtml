@@ -1,0 +1,27 @@
+﻿@using DTH_Coffee.Models
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<table align="center">
+    <br />
+    <h2 style="text-align:center">TRANG CHỦ</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        
+        <tr style="height:40px">
+            <td> Xin Chào </td>
+            <td>
+                @{
+                    string tenadmin;
+                    AD ad = (AD)Session["Taikhoanadmin"];
+                    tenadmin = ad.Ten;
+                }
+                @tenadmin
+            </td>
+        </tr> 
+
+    }
+</table>
+<img src="~/image/ABOUT-ORIGIN.png" width="100%" />

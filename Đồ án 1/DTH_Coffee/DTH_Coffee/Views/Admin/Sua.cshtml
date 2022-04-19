@@ -1,0 +1,85 @@
+﻿@model DTH_Coffee.Models.CAFE
+
+
+@{
+    ViewBag.Title = "Sua";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>SỬA THÔNG TIN SẢN PHẨM</h2>
+
+@using (Html.BeginForm("Sua", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.MaCafe)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaCafe, new { @class= "control-label col-md-2"} )
+        <div class="col-md-10">
+            <div style="font:18px; padding: 5px 0 0 5px"> @ViewBag.MaCafe </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TenCafe, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TenCafe)
+            @Html.ValidationMessageFor(model => model.TenCafe)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gia, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Gia)
+            @Html.ValidationMessageFor(model => model.Gia)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoTa,  new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <textarea name="MoTa" rows="10"> @ViewBag.Mota</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anh, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">Chọn ảnh mới<br />
+            <input type="file" name="fileAnh" />
+            <img src="@Url.Content("~/image products/"+ Model.Anh)" width="70px" /> (Ảnh hiện tại)
+            @*Thong bao trùng*@
+            @ViewBag.Thongbao
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NgayCapNhat)
+            @Html.ValidationMessageFor(model => model.NgayCapNhat)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaLoai, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("MaLoai")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Lưu" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Quay Lại", "Cafe")
+</div>

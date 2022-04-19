@@ -1,0 +1,70 @@
+﻿@model DTH_Coffee.Models.CAFE
+
+@{
+    ViewBag.Title = "Xoa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XÁC NHẬN XOÁ THÔNG TIN SẢN PHẨM</h2>
+
+<h3>Bạn chắc chắn muốn xoá sản phẩm này?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên cafe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenCafe)
+        </dd>
+
+        <dt>
+            Giá bán:
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.Gia) VNĐ
+        </dd>
+
+        <dt>
+            Mô tả:
+        </dt>
+        <dd style="width: 500px; text-align:justify">
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            Ảnh:
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/image products/"+ Model.Anh)" width="120px" />
+        </dd>
+
+        <dt>
+            Ngày cập nhật
+        </dt>
+
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+        </dd>
+
+        <dt>
+            Loại cafe:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAICAFE.TenLoaiCafe)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="XOÁ" class="btn btn-danger" /> |
+            @Html.ActionLink("Quay Lại", "Cafe")
+        </div>
+    }
+</div>

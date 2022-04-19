@@ -1,0 +1,33 @@
+﻿@model DTH_Coffee.Models.LOAICAFE
+
+@{
+    ViewBag.Title = "XoaLoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>XOÁ LOẠI CÀ PHÊ</h2>
+
+<h3>Bạn có chắc muốn xoá?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoaiCafe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenLoaiCafe)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Quay Lại", "LoaiCafe")
+        </div>
+    }
+</div>

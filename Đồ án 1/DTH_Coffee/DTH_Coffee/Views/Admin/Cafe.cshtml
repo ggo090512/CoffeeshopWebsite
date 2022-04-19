@@ -1,0 +1,76 @@
+﻿@using DTH_Coffee.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<DTH_Coffee.Models.CAFE>
+
+@helper Truncate(string input, int length)
+{
+    if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length)<text>...</text>
+    }
+}
+
+@{
+    ViewBag.Title = "Cafe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+<h2>QUẢN LÝ THÔNG TIN CAFE</h2>
+<p>
+    @Html.ActionLink("Thêm Sản Phẩm", "Themcaphe")
+</p>
+<table class="table" border="1">
+    <tr>
+        <th style="width:200px"> Tên Cafe</th>
+        <th style="width:100px"> Giá bán</th>
+        <th style="width:300px"> Mô tả</th>
+        <th style="width:120px"> Ảnh</th>
+        <th style="width:150px"> Ngày cập nhật</th>
+        <th style="width:100px"> Loại cafe</th>
+        <th style="width:200px"> </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenCafe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gia)
+            </td>
+            <td>
+                @Truncate(item.MoTa, 100)
+            </td>
+            <td>
+                <img src="@Url.Content("~/image products/"+ item.Anh)" width="70" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayCapNhat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOAICAFE.TenLoaiCafe)
+            </td>
+            <td>
+                @Html.ActionLink("Sửa", "Sua", new { id = item.MaCafe }) |
+                @Html.ActionLink("Chi Tiết", "Chitiet", new { id = item.MaCafe }) |
+                @Html.ActionLink("Xoá", "Xoa", new { id = item.MaCafe })
+            </td>
+        </tr>
+    }
+
+</table>
+@*Tao lien ket trang*@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model, page => Url.Action("Cafe", new { page = page }))
+</div>
+<style>
+    .MenuTrang li {
+        display: inline;
+    }
+</style>

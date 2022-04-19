@@ -1,0 +1,67 @@
+﻿@using DTH_Coffee.Models
+
+@{
+    ViewBag.Title = "DoiMK";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<table align="center">
+    <br />
+    <h2 style="text-align:center">ĐỔI MẬT KHẨU ADMIN</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.ValidationSummary(true)
+        <tr style="height:40px">
+            <td> Tên Đăng Nhập: </td>
+            <td>
+                @{
+                    string TenDangNhap;
+                    AD admin = (AD)Session["Taikhoanadmin"];
+                    TenDangNhap = admin.UserName;
+                }
+                @TenDangNhap
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Mật khẩu cũ: </td>
+            <td>
+                @Html.Password("MatKhauCu")
+                @ViewData["Loi1"]
+                @ViewBag.Thongbao
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Mật khẩu mới: </td>
+            <td>
+                @Html.Password("MatKhauMoi")
+                @ViewData["Loi2"]
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Nhập lại mật khẩu mới: </td>
+            <td>
+                @Html.Password("NhaplaiMK")
+                @ViewData["Loi3"]
+                @ViewBag.Loi4
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td> Họ Tên: </td>
+            <td>
+                @{
+                    string tenadmin;
+                    AD ad = (AD)Session["Taikhoanadmin"];
+                    tenadmin = ad.Ten;
+                }
+                @tenadmin
+            </td>
+        </tr>
+        <tr style="height:40px">
+            <td></td>
+            <td>
+                <input type="submit" value="Đổi Mật Khẩu" />
+            </td>
+        </tr>
+
+    }
+</table>

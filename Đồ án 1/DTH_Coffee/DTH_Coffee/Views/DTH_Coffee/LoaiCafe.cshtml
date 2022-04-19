@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DTH_Coffee.Models.LOAICAFE>
+
+<h1 class="my-4">DANH MỤC SẢN PHẨM</h1>
+<div class="list-group">
+    @foreach (var item in Model)
+    {
+        <a href="@Url.Action("SPTheoLoai", "DTH_Coffee", new { id = item.MaLoai})" class="list-group-item">
+            @item.TenLoaiCafe
+        </a>
+    }
+</div>

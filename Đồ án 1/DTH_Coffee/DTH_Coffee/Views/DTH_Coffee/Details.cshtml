@@ -1,0 +1,44 @@
+﻿<style type="text/css">
+    #Muangay a {
+        clear: both;
+        background-color: orange;
+        color: white;
+        width: 120px;
+        height: 35px;
+        display: block;
+        float: left;
+        text-align: center;
+        padding-top: 10px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+        #Muangay a:hover {
+            background-color: red;
+            color: white;
+        }
+</style>
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h2><center>CHI TIẾT SẢN PHẨM</center></h2>
+<div>
+    <div style="width:40%; float:left; border-left: dotted 1px; border-color: azure">
+        <img src="~/image products/@Model.Anh" width="100%" />
+    </div>
+    <div style="width:60%; float: left; padding: 10px">
+        <h4 style="font-weight: bold; color:black">@Model.TenCafe</h4>
+        <p style="text-align:justify"><span style="font-weight:bold"> Mô tả: </span>@Model.MoTa</p>
+        <p style="font-weight: bold"> Giá bán: <span style="color:orange; font-size:18pt"> @Model.Gia VNĐ</span></p>
+        <div id="Muangay">
+            <a href="@Url.Action("ThemGioHang", "GioHang",new {@iMaCafe = @Model.MaCafe, @strURL=Request.Url.ToString()})">MUA NGAY</a>
+        </div>
+    </div>
+    
+        @*<div id="Muangay">
+            <a href="@Url.Action("ThemGioHang", "GioHang",new {@iMaCafe = @Model.MaCafe, @strURL=Request.Url.ToString()})">MUA NGAY</a>
+        </div>*@
+    
+</div>

@@ -1,0 +1,42 @@
+﻿@*@model IEnumerable<DTH_Coffee.Models.CAFE>*@
+@using DTH_Coffee.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<CAFE>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<h1 style="text-align:center">SẢN PHẨM MỚI</h1>
+<div class="row">
+    @foreach (var cafe in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <a href="@Url.Action("Details", "DTH_Coffee", new { id = cafe.MaCafe})">
+                    <img class="card-img-top" alt="@cafe.TenCafe" src="~/image products/@cafe.Anh" />
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="@Url.Action("Details", "DTH_Coffee", new { id = cafe.MaCafe })">@cafe.TenCafe</a>
+                    </h4>
+                    <h5>@cafe.Gia VNĐ</h5>
+                </div>
+                @*<div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>*@
+            </div>
+        </div>
+    }
+   
+</div>
+@*Tao lien ket trang*@
+Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount;
+<div class="MenuTrang">
+    @Html.PagedListPager(Model,page => Url.Action("Index", new {page=page}))
+</div>
+<style>
+    .MenuTrang li{
+        display:inline;
+    }
+</style>

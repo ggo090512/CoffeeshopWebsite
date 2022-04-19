@@ -1,0 +1,61 @@
+﻿@model DTH_Coffee.Models.CAFE
+
+@{
+    ViewBag.Title = "Chitiet";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>THÔNG TIN CHI TIẾT SẢN PHẨM</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên Cafe:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenCafe)
+        </dd>
+
+        <dt>
+            Giá bán:
+        </dt>
+        <dd>
+            @String.Format("{0:0,0}", Model.Gia) VNĐ
+        </dd>
+        <dt>
+            Mô tả:
+        </dt>
+        <dd style="width: 500px; text-align:justify">
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            Ảnh:
+        </dt>
+        <dd>
+            <img src="@Url.Content("~/image products/"+ Model.Anh)" width="120px" />
+        </dd>
+
+
+        <dt>
+            Ngày cập nhật:
+        </dt>
+        <dd>
+            @String.Format("{0:dd/MM/yyyy}", Model.NgayCapNhat)
+        </dd>
+
+
+        <dt>
+            Loại cafe:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LOAICAFE.TenLoaiCafe)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Điều Chỉnh", "Sua", new { id = Model.MaCafe }) |
+    @Html.ActionLink("Quay Lại", "Cafe")
+</p>

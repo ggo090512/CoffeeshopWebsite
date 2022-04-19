@@ -1,0 +1,76 @@
+﻿@model DTH_Coffee.Models.CAFE
+
+@{
+    ViewBag.Title = "Themcaphe";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<br />
+<h2>THÊM MỚI CÀ PHÊ</h2>
+@*Them thuoc tinh cho form de upload anh*@
+@using (Html.BeginForm("Themcaphe", "Admin", FormMethod.Post, new { @enctype =  "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CÀ PHÊ</h4>
+        <hr />
+         @Html.ValidationSummary(true)
+         <div class="form-group">
+             @Html.LabelFor(model => model.TenCafe, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 @Html.EditorFor(model => model.TenCafe)
+                 @Html.ValidationMessageFor(model => model.TenCafe)
+            </div>
+
+        </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Gia, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Gia)
+            @Html.ValidationMessageFor(model => model.Gia)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MoTa, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+           <textarea name="MoTa" rows="10">Mô tả thông tin sản phẩm</textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Anh, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="fileupload" />
+            @ViewBag.Thongbao
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NgayCapNhat, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="date" name="NgayCapNhat" />
+            @Html.ValidationMessageFor(model => model.NgayCapNhat)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MaLoai, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("MaLoai")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm Mới" class="btn btn-danger" />
+        </div>
+    </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Quay Lại", "Cafe")
+</div>

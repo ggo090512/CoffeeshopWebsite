@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DTH_Coffee.Models.CAFE>
+@{
+    ViewBag.Title = "SPTheoLoai";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<h2><center>CÀ PHÊ THEO LOẠI</center></h2>
+<div class="row">
+    @foreach (var cafe in Model)
+    {
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <a href="@Url.Action("Details", "DTH_Coffee", new { id = cafe.MaCafe })">
+                    <img class="card-img-top" alt="@cafe.TenCafe" src="~/image products/@cafe.Anh" />
+                </a>
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="@Url.Action("Details", "DTH_Coffee", new { id = cafe.MaCafe })">
+                            @cafe.TenCafe
+                        </a>
+                    </h4>
+                    <h5>@cafe.Gia VNĐ</h5>
+                </div>
+                @*<div class="card-footer">
+                    <small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
+                </div>*@
+            </div>
+        </div>
+    }
+</div>
